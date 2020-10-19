@@ -1,0 +1,38 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 9fb88d114d19e5ddaed6f6b89934830d46bbb6248e4ecafd328dc2fbd615ea73
+
+name:           fsnotify-exp
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/mjgajda/fsnotify-exp#readme>
+homepage:       https://github.com/mjgajda/fsnotify-exp#readme
+bug-reports:    https://github.com/mjgajda/fsnotify-exp/issues
+author:         Michał J. Gajda
+maintainer:     mjgajda@migamake.com
+copyright:      AllRightsReserved
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/mjgajda/fsnotify-exp
+
+executable fsnotify-exp-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_fsnotify_exp
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base
+    , fsnotify
+  default-language: Haskell2010
