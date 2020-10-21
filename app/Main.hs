@@ -10,10 +10,12 @@ import System.Environment
 main = do
   evtChan <- Chan.newChan
   args <- getArgs
+  let watched | null args = ["."]
+              | otherwise = args
   putStrLn $ "CLI arguments: " <> show args
   forkIO $ forever $ readChan evtChan >>= print
   withManagerConf (defaultConfig { confDebounce = NoDebounce
                                  , confUsePolling = True }) $ \mgr -> do
-    forM_ args $ \dirname -> 
+    forM_ watched $ \dirname -> 
       System.FSNotify.watchTreeChan mgr dirname (const True) evtChan
     threadDelay 10000000000
