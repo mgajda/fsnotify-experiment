@@ -14,8 +14,7 @@ main = do
               | otherwise = args
   putStrLn $ "CLI arguments: " <> show args
   forkIO $ forever $ readChan evtChan >>= print
-  withManagerConf (defaultConfig { confDebounce = NoDebounce
-                                 , confUsePolling = True }) $ \mgr -> do
+  withManagerConf (defaultConfig { confDebounce = NoDebounce, confUsePolling = True }) $ \mgr -> do
     forM_ watched $ \dirname -> 
-      System.FSNotify.watchTreeChan mgr dirname (const True) evtChan
+      System.FSNotify.watchDirChan mgr dirname (const True) evtChan
     threadDelay 10000000000
