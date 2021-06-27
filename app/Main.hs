@@ -1,4 +1,5 @@
 {-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE ApplicativeDo #-}
 module Main where
 
 import Control.Monad(forever, forM_)
@@ -6,6 +7,10 @@ import Control.Concurrent
 import Control.Concurrent.Chan as Chan
 import System.FSNotify
 import System.Environment
+
+class Arrow    f
+   => ArrowMap f where
+  mapA :: Foldable t => (arr a b, a i [a]) -> a b [b]
 
 main = do
   evtChan <- Chan.newChan
